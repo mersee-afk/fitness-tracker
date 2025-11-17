@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YJRGM Fitness Tracker — Vanilla</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="adventure.css" />
+</head>
+<body>
+  <!-- Full-screen login modal -->
+  <div id="loginOverlay" class="overlay">
+    <div class="login-card">
+      <h1>YJRGM Tracker</h1>
+      <p class="muted">Sign in to continue</p>
+      <form id="loginForm">
+        <input id="username" type="text" placeholder="Username" required />
+        <input id="password" type="password" placeholder="Password" required />
+        <button type="submit" class="primary">Login</button>
+        <p class="hint">Try <strong>admin / 1234</strong> (demo)</p>
+        <p id="loginError" class="error"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="app-root" aria-hidden="true">
+    <header class="hero">
+      <div class="hero-left">
+        <h1>🏋️ YJRGM Health & Fitness</h1>
+        <p class="subtitle">Your daily companion — track exercise, meals and goals.</p>
+      </div>
+      <div class="hero-actions">
+        <button id="logoutBtn" class="ghost">Logout</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>💪 Exercise</h2>
+        <form id="exerciseForm" class="inline-form">
+          <select id="exerciseType" required>
+            <option value="">Type</option>
+            <option>Cardio</option>
+            <option>Strength</option>
+            <option>Yoga</option>
+            <option>Stretching</option>
+          </select>
+          <input id="exerciseName" placeholder="Exercise name" required />
+          <input id="exerciseMinutes" type="number" placeholder="Minutes" required min="1" />
+          <button type="submit" class="primary small">Add</button>
+        </form>
+        <ul id="exerciseList" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>🍎 Meals</h2>
+        <form id="mealForm" class="inline-form">
+          <input id="mealName" placeholder="Meal (Breakfast)" required />
+          <input id="mealCalories" type="number" placeholder="Calories" required min="0" />
+          <input id="mealProtein" type="number" placeholder="Protein g" required min="0" />
+          <button type="submit" class="primary small">Add</button>
+        </form>
+        <ul id="mealList" class="list"></ul>
+      </section>
+
+      <section class="card grid-2">
+        <div>
+          <h2>🎯 Goals</h2>
+          <form id="goalForm" class="stack">
+            <label>Daily Calories Target
+              <input id="goalCalories" type="number" min="0" required />
+            </label>
+            <label>Daily Exercise Minutes Target
+              <input id="goalExercise" type="number" min="0" required />
+            </label>
+            <button type="submit" class="primary">Save Goals</button>
+          </form>
+          <div id="goalDisplay" class="goalDisplay"></div>
+        </div>
+        <div>
+          <h2>📊 Progress</h2>
+          <canvas id="calorieChart"></canvas>
+          <canvas id="exerciseChart" style="margin-top:18px;"></canvas>
+        </div>
+      </section>
+
+      <section class="card tips">
+        <h3>💡 Tips</h3>
+        <ul>
+          <li>Drink water regularly</li>
+          <li>Balance cardio + strength</li>
+          <li>Sleep 7–8 hours</li>
+        </ul>
+      </section>
+
+      <footer class="footer">© 2025 Mercy — Built for portfolio</footer>
+    </main>
+  </div>
+
+  <script src="adventure.js"></script>
+</body>
+</html>
